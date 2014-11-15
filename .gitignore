@@ -1,6 +1,6 @@
 *.pyc
 *.db
-
+settings_local.py
 public/media/
 public/media/*
 
