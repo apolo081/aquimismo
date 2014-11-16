@@ -83,6 +83,16 @@ TEMPLATE_DIRS = (
     'templates'
 )
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'public/static/'),
+    'public/static/'
+)
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'public/media/')
+
+
 try:
     execfile('aquimismo/settings_local.py')
 except IOError:
