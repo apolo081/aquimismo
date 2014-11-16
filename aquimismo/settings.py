@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'rest_framework',
     # core apps
     'core',
+    'comments',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -83,6 +84,7 @@ TEMPLATE_DIRS = (
     'templates'
 )
 
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'public/static/'),
     'public/static/'
@@ -91,6 +93,18 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'public/media/')
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+
+    ),
+    'DEFAULT_PERMISSION_CLASSES':(
+        'rest_framework.authentication.IsAuthenticated'
+    )
+}
 
 
 try:
