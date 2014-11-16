@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
 </head>
-<body>
+<body ng-app="login">
 
 <!--login modal-->
 <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
@@ -19,17 +19,24 @@
 
             </div>
             <div class="modal-body">
-                <form class="form col-md-12 center-block">
+                <form class="form col-md-12 center-block" ng-controller="LoginController">
                     <div class="form-group">
-                        <input type="text" class="form-control input-lg" placeholder="Email">
+
+                        <input type="text" class="form-control input-lg" placeholder="Username"
+                                 ng-model="dataForm.username" id="username">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control input-lg" placeholder="Password">
+                        <input type="password" class="form-control input-lg" placeholder="Password"
+                                 ng-model="dataForm.password" id="passwd">
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary btn-lg btn-block">Entrar</button>
+                        <button ng-click="doClick()" class="btn btn-primary btn-lg btn-block">Entrar</button>
                         <br>
+
                         <span class="pull-right"><a href="#">¿Quieres ser parte de nuestra pueba cerrada?</a></span><span><a href="#">¿Necesitas ayuda?</a></span>
+                        <ol>
+                            <li ng-repeat="item in dataForm.items">[[ item.text ]]</li>
+                        </ol>
                     </div>
                 </form>
                 <div class="clearfix"></div>
@@ -46,6 +53,13 @@
 <script src="{% static 'js/base.js' %}"></script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
 <script src="{% static 'js/angular.js' %}"></script>
+<script src="{% static 'js/api.js' %}"></script>
 <script src="{% static 'js/login-app/app.js' %}"></script>
+
+<script>
+    var url_ajax = '{% url 'ajax' %}';
+    var url_authentication = '{% url 'authentication' %}'
+</script>
+
 </body>
 </html>

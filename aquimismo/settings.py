@@ -41,7 +41,6 @@ INSTALLED_APPS = (
     'rest_framework',
     # core apps
     'core',
-    'comments',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -99,11 +98,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-
     ),
-    'DEFAULT_PERMISSION_CLASSES':(
-        'rest_framework.authentication.IsAuthenticated'
-    )
 }
 
 

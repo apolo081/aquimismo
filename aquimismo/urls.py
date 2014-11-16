@@ -12,7 +12,9 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$',TemplateView.as_view(template_name='login.html'))
+    url(r'^', include('core.urls')),
+    url(r'^$',TemplateView.as_view(template_name='login.html'),name='login_url'),
+    url(r'^ajax_call/$','core.views.ajax',name='ajax')
 )
 
 if settings.DEBUG:
