@@ -2,7 +2,8 @@
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
+from django.template.context import RequestContext
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -28,11 +29,14 @@ class Autenticacion(APIView):
         else:
             return Response({'done':False, 'message':'Usuario/Contraseña invalidos'})
 
-    def delete(self, request, *args, **kwargs):
+    def put(self, request, *args, **kwargs):
         logout(request)
-        return Response({})
+        return Response({
+
+        })
 
 authentication = Autenticacion.as_view()
+
 
 class Index(APIView,IsAuthenticatedMixin):
 
@@ -41,9 +45,10 @@ class Index(APIView,IsAuthenticatedMixin):
         return redirect if redirect != None else super(Index,self).dispatch(request,*args,**kwargs)
 
     def get(self,request,*args,**kwargs):
-        return HttpResponse(request.user)
+        return render_to_response('index.html',{},context_instance=RequestContext(request))
 
 index = Index.as_view()
+
 
 def ajax(request):
     print request.method
